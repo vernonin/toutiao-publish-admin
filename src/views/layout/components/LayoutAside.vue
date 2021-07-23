@@ -4,6 +4,7 @@
       background-color="#303030"
       text-color="#AAAAAA"
       active-text-color="#FFD700"
+      :collapse="isCollapse"
       router>
       <el-menu-item index="/">
         <i class="el-icon-s-home"></i>
@@ -41,7 +42,7 @@
 export default {
   name: 'LayoutAside',
   components: {},
-  props: {},
+  props: ['is-collapse'],
   data () {
     return {
     }

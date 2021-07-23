@@ -103,15 +103,19 @@ export default {
       this.isLogin = true
 
       login(this.user).then(res => {
-        console.log(res)
-        this.$message({
-          message: '登录成功！',
-          type: 'success'
+        // console.log(res)
+        this.$notify({
+          title: '登录成功',
+          message: '进入首页',
+          type: 'success',
+          duration: 2000
         })
         // 登录成功改变isLogin为false
         this.isLogin = false
+        // 把token保存到本地存储
+        window.localStorage.setItem('user', JSON.stringify(res.data.data))
         // 跳转到首页
-        this.$router.push('/layout')
+        this.$router.push('/')
       }).catch(err => {
         console.log(err)
         this.$message.error('登录失败，手机号或验证码错误！')
