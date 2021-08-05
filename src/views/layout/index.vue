@@ -22,7 +22,7 @@
                 {{user.name}}<i class="el-icon-arrow-down el-icon--right"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>个人设置</el-dropdown-item>
+                <el-dropdown-item @click.native="onsettings">个人设置</el-dropdown-item>
                 <el-dropdown-item @click.native="onLogout">退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
@@ -82,6 +82,9 @@ export default {
           message: '已取消登录'
         })
       })
+    },
+    onsettings () {
+      this.$router.push('/settings')
     }
   }
 }
