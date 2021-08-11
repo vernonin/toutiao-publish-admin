@@ -93,6 +93,7 @@
               circle
               type="primary"
               icon="el-icon-edit"
+              @click="$router.push('publish?id=' + scope.row.id)"
               size="mini"></el-button>
             <el-button
               size="mini"
