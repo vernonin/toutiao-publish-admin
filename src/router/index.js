@@ -38,6 +38,11 @@ const routes = [
         path: '/publish',
         name: 'Publish',
         component: () => import('@/views/publish/')
+      },
+      {
+        path: '/comment',
+        name: 'Comment',
+        component: () => import('@/views/comment/')
       }
     ]
   }
