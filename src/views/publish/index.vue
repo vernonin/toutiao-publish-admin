@@ -142,6 +142,7 @@ export default {
     }
   },
   components: {
+    // 注册副本吧组件
     'el-tiptap': ElementTiptap
   },
   methods: {

@@ -7,7 +7,7 @@
 <script>
 
 export default {
-  name: 'HomeIndex',
+  name: 'LayoutHome',
   components: {},
   props: {},
   data () {
