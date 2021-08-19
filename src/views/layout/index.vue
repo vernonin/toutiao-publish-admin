@@ -12,7 +12,7 @@
             @click="isCollapse = !isCollapse"
             :class="{'el-icon-s-fold': !isCollapse, 'el-icon-s-unfold': isCollapse}"
             ></i>
-            黄琳科技有限公司
+            练习头条发布系统
           </div>
           <div class="header-info">
             <img class="header-user-img" :src="user.photo">
@@ -38,6 +38,9 @@
 <script>
 import LayoutAside from './components/LayoutAside'
 import { getUserProfile } from '@/api/user'
+
+import globalBus from '@/utils/global-bus'
+
 export default {
   name: 'LayoutIndex',
   components: {
@@ -54,6 +57,13 @@ export default {
   watch: {},
   created () {
     this.loadUserProfile()
+
+    // 注册自定义事件
+    // 当这个事件发布之后，这个注册函数就会被调用
+    globalBus.$on('updataUser', data => {
+      this.user.name = data.name
+      this.user.photo = data.photo
+    })
   },
   mounted () {
   },

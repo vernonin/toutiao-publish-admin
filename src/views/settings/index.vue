@@ -65,6 +65,9 @@ import 'cropperjs/dist/cropper.css'
 import Cropper from 'cropperjs'
 
 import { getUserProfile, updataUserPhoto, updataUser } from '@/api/user'
+
+import globalBus from '@/utils/global-bus'
+
 export default {
   name: 'LayoutSettings',
   components: {},
@@ -152,10 +155,8 @@ export default {
       this.cropper.getCroppedCanvas().toBlob(file => {
         const fd = new FormData()
         fd.append('photo', file)
-        console.log(fd)
         // 请求提交 fd
         updataUserPhoto(fd).then(res => {
-          console.log(res)
           // 关闭对话框
           this.dialogVisible = false
           // 关闭加载动画效果
@@ -166,7 +167,9 @@ export default {
             type: 'success'
           })
           // 更新视图(页面)展示
-          this.loadUser()
+          this.user.photo = window.URL.createObjectURL(file)
+          // 发布自定义事件，用户信息已修改
+          globalBus.$emit('updataUser', this.user)
         })
       })
     },
@@ -181,6 +184,8 @@ export default {
           message: '恭喜你，修改个人信息成功',
           type: 'success'
         })
+        // 发布自定义事件，用户信息已修改
+        globalBus.$emit('updataUser', this.user)
       })
     }
   }
