@@ -20,13 +20,13 @@
         <el-form-item prop="mobile">
           <el-input
           v-model="user.mobile"
-          placeholder="请输手机号"
+          placeholder="请输手机号：13911111111"
           ></el-input>
         </el-form-item>
         <el-form-item prop="code">
           <el-input
           v-model="user.code"
-          placeholder="请输入验证码"
+          placeholder="请输入验证码：246810"
           ></el-input>
         </el-form-item>
         <el-form-item prop="isAgree">
