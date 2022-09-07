@@ -11,32 +11,17 @@
         <el-table
           v-loading="isLoading"
           :data="articlesData"
+          border
           style="width: 100%">
-          <el-table-column
-            prop="title"
-            label="标题"
-            width="240">
-          </el-table-column>
-          <el-table-column
-            prop="total_comment_count"
-            label="总评论数"
-            width="180">
-          </el-table-column>
-          <el-table-column
-            prop="fans_comment_count"
-            label="粉丝评论数"
-            width="180">
-          </el-table-column>
-          <el-table-column
-            prop="comment_status"
-            label="状态"
-            width="120">
+          <el-table-column prop="title" label="标题" align="center" />
+          <el-table-column prop="total_comment_count" label="总评论数" width="180" align="center" />
+          <el-table-column prop="fans_comment_count" label="粉丝评论数" width="180" align="center" />
+          <el-table-column prop="comment_status" label="状态" width="100" align="center">
             <template slot-scope="scope">
               <el-tag :type="scope.row.comment_status ? 'success' : 'warning'">{{scope.row.comment_status ? '正常' : '关闭'}}</el-tag>
             </template>
           </el-table-column>
-          <el-table-column
-            label="操作">
+          <el-table-column label="操作" width="120" align="center">
             <template slot-scope="scope">
               <el-switch
                 v-model="scope.row.comment_status"
@@ -56,7 +41,8 @@
           :page-sizes="[10, 20, 50]"
           :page-size.sync="pageSize"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="totalCount">
+          :total="totalCount"
+          style="margin-top: 12px;text-align: right">
         </el-pagination>
       </el-card>
     </div>
@@ -107,6 +93,7 @@ export default {
         results.forEach(article => {
           article.statusDisabled = false
         })
+        console.log(results)
         this.articlesData = results
         this.totalCount = res.data.data.total_count
         // 请求成功，关闭加载动画

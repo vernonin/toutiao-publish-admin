@@ -141,9 +141,11 @@ export default {
   background-image: url('../../assets/img/loginbg.jpg');
   background-size: cover;
   .login-form{
-    background-color: rgba(8, 129, 19, 0.5);
-    padding: 20px 50px;
+    margin-right: -600px;
+    padding: 10px 50px;
     min-width: 300px;
+    border-radius: 10px;
+    background-color: rgba(48, 49, 46, 0.5);
     h2{
       color: lightblue;
       text-align: center;

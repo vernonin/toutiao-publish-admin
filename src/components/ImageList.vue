@@ -11,7 +11,7 @@
           <el-button
           v-if="isShowAddBtn"
           type="success"
-          @click="dialogUploadVisible = true">上传素材</el-button>
+          @click="isDialogUploadVisible = true">上传素材</el-button>
         </div>
         <!-- 素材列表 -->
         <el-row :gutter="10">
@@ -48,37 +48,16 @@
         </el-pagination>
       </div>
       <!-- 上传素材弹出框 -->
-      <el-dialog
-        title="上传素材"
-        :visible.sync="dialogUploadVisible"
-        :append-to-body="true">
-        <!--
-          upload组件本身就支持请求提交上传操作，
-          使用它就不用自己去发请求，它会自己发送请求
-          请求方法：默认是POST
-          请求路径：action，必须写完整路径
-          请求头：headers
-        -->
-        <el-upload
-          class="upload-demo"
-          drag
-          action="http://ttapi.research.itcast.cn/mp/v1_0/user/images"
-          :headers="uploadHeaders"
-          name="image"
-          multiple
-          :show-file-list="false"
-          :on-success="onUploadSuccess">
-          <i class="el-icon-upload"></i>
-          <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-          <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
-        </el-upload>
-      </el-dialog>
+      <upload-file
+      :dialogUploadVisible="isDialogUploadVisible"
+      @closepop="closeDialog"/>
     </div>
 </template>
 
 <script>
 import { getImages, collectImage, deleteImage } from '@/api/image'
-const user = JSON.parse(window.localStorage.getItem('user'))
+import UploadFile from './UploadFile.vue'
+
 export default {
   name: 'ImageList',
   data () {
@@ -87,10 +66,7 @@ export default {
       imagesList: [], // 图片素材列表数据
       totalCount: 0, // 总图片数量
       pageSize: 10, // 每页10条数据(写死)
-      dialogUploadVisible: false,
-      uploadHeaders: {
-        Authorization: `Bearer ${user.token}`
-      },
+      isDialogUploadVisible: false,
       selected: null
     }
   },
@@ -112,7 +88,9 @@ export default {
     // 初始化加载第一页数据
     this.loadImages()
   },
-  components: {},
+  components: {
+    UploadFile
+  },
   methods: {
     loadImages (page = 1) {
       getImages({
@@ -128,16 +106,13 @@ export default {
     // onChangeRadrio () {
     //   this.loadImages()
     // },
-    // 上传功能回调的方法
-    onUploadSuccess () {
-      // 关闭弹出框
-      this.dialogUploadVisible = false
-      // 更新素材列表内容.
-      this.loadImages()
-    },
     // 页面变化按钮
     onPageChange (page) {
       this.loadImages(page)
+    },
+    // 关闭对话框
+    closeDialog () {
+      this.isDialogUploadVisible = false
     },
     // 点击收藏按钮方法
     onCollect (value) {

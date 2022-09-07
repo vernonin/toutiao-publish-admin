@@ -1,14 +1,17 @@
 <template>
     <div class="home-container">
-      <h1>这是首页</h1>
+      <test-uplaod/>
     </div>
 </template>
 
 <script>
+import TestUplaod from '../../components/TestUplaod.vue'
 
 export default {
   name: 'LayoutHome',
-  components: {},
+  components: {
+    TestUplaod
+  },
   props: {},
   data () {
     return {

@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Login from '@/views/login'
 Vue.use(VueRouter)
 
-const routes = [
+export const routes = [
   // {
   //   path: '/',
   //   redirect: '/login'
@@ -22,37 +22,50 @@ const routes = [
       {
         path: '/', // path为空，会作为默认子路由渲染
         name: 'Home',
-        component: () => import('@/views/home')
+        component: () => import('@/views/home'),
+        meta: { title: '首页', icon: 'el-icon-s-home' }
       },
       {
         path: '/article',
         name: 'Article',
-        component: () => import('@/views/article/')
+        component: () => import('@/views/article/'),
+        meta: { title: '内容管理', icon: 'el-icon-document' }
       },
       {
         path: '/image',
         name: 'Image',
-        component: () => import('@/views/image/')
+        component: () => import('@/views/image/'),
+        meta: { title: '素材管理', icon: 'el-icon-picture-outline' }
       },
       {
         path: '/publish',
         name: 'Publish',
-        component: () => import('@/views/publish/')
+        component: () => import('@/views/publish/'),
+        meta: { title: '发布文章', icon: 'el-icon-s-promotion' }
       },
       {
         path: '/comment',
         name: 'Comment',
-        component: () => import('@/views/comment/')
+        component: () => import('@/views/comment/'),
+        meta: { title: '评论管理', icon: 'el-icon-chat-dot-square' }
       },
       {
         path: '/fans',
         name: 'Fans',
-        component: () => import('@/views/fans/')
+        component: () => import('@/views/fans/'),
+        meta: { title: '粉丝管理', icon: 'el-icon-s-data' }
       },
       {
         path: '/settings',
         name: 'Settings',
-        component: () => import('@/views/settings/')
+        component: () => import('@/views/settings/'),
+        meta: { title: '个人设置', icon: 'el-icon-setting' }
+      },
+      {
+        path: '/table',
+        name: 'table',
+        component: () => import('@/views/table/'),
+        meta: { title: '表格', icon: 'el-icon-date' }
       }
     ]
   }

@@ -26,7 +26,7 @@ export default {
     // 3.基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(this.$refs.main)
 
-    // 指定图表的配置项和数据
+    // 4.指定图表的配置项和数据
     var option = {
       backgroundColor: '#000',
       tooltip: {
@@ -534,7 +534,7 @@ export default {
         }
       ]
     }
-
+    // 5.
     myChart.setOption(option, true)
 
     function generateRandom (lower, upper, fixed) {

@@ -58,36 +58,22 @@
         class="list-table"
         size="mini"
         style="width: 100%">
-        <el-table-column
-          label="封面">
+        <el-table-column label="封面"  align="center" width="180">
           <template slot-scope="scope">
             <img v-if="scope.row.cover.images[0]" class="article-cover" :src="scope.row.cover.images[0]">
             <img v-else class="article-cover" src="@/assets/img/none.jpg">
           </template>
         </el-table-column>
-        <el-table-column
-          prop="title"
-          label="标题">
-        </el-table-column>
-        <el-table-column
-          prop="status"
-          label="状态">
+        <el-table-column prop="title" label="标题"  align="center" />
+        <el-table-column prop="status" label="状态" width="120" align="center">
           <template slot-scope="scope">
-            <el-tag :type="articlesStatus[scope.row.status].type"
-            >{{ articlesStatus[scope.row.status].text }}</el-tag>
-            <!-- <el-tag v-if="scope.row.status === 0">草稿</el-tag>
-            <el-tag type="info" v-else-if="scope.row.status === 1">待审核</el-tag>
-            <el-tag type="success" v-else-if="scope.row.status === 2">审核通过</el-tag>
-            <el-tag type="warning" v-else-if="scope.row.status === 3">审核失败</el-tag>
-            <el-tag type="danger" v-else-if="scope.row.status === 4">已删除</el-tag> -->
+            <el-tag :type="articlesStatus[scope.row.status].type">
+              {{ articlesStatus[scope.row.status].text }}
+            </el-tag>
           </template>
         </el-table-column>
-        <el-table-column
-          prop="pubdate"
-          label="发布时间">
-        </el-table-column>
-        <el-table-column
-          label="操作">
+        <el-table-column prop="pubdate" label="发布时间" width="150" align="center" />
+        <el-table-column label="操作" width="100" align="center">
           <template slot-scope="scope">
             <el-button
               circle

@@ -132,7 +132,7 @@ export default {
     }
   }
   .main{
-    background-color: lightblue;
+    background-color: #eee;
   }
 }
 </style>
